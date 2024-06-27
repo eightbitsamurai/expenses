@@ -1,0 +1,13 @@
+<div class="card">
+    <div class="card-header item-header">
+        <div>{{expense.expenseName}} (${{expense.expenseValue}}) </div>
+        <div class="button-wrapper">
+          <button type="button" class="btn btn-outline-info btn-sm" (click)="editExpense()"><i class="bi bi-pencil"></i></button>
+          <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteExpense()"><i class="bi bi-trash3"></i></button>
+        </div>
+    </div>
+    <div class="card-body">
+      <p>Description: {{expense.expenseDescription}}</p>
+      <p class="card-subtitle my-1 text-muted">Added on {{expense.expenseDate}} under {{categoryName}}</p>
+    </div>
+</div>

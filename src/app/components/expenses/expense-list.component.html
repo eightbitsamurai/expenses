@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 list-header">
+            <div>
+                <h2>Expenses</h2>
+                <div *ngIf="editMode === false" class="monthly-budget-wrapper">
+                    <span>Monthly budget: {{monthlySpendings}}/{{user?.monthlyBudget}}</span>
+                    <button type="button" class="btn btn-outline-info btn-sm" (click)="toggleEditMode(true)"><i class="bi bi-pencil"></i></button>
+                </div>
+                <div *ngIf="editMode === true" class="monthly-budget-wrapper">
+                    <span style="flex-shrink: 0;">Monthly budget:</span>
+                    <input type="text" class="form-control input-sm" placeholder="Monthly budget" [(ngModel)]="monthlyBudget">
+                    <button type="button" class="btn btn-outline-info btn-sm" (click)="updateMonthlyBudget()"><i class="bi bi-pencil"></i></button>
+                    <button type="button" class="btn btn-outline-danger btn-sm" (click)="toggleEditMode(false)"><i class="bi bi-trash3"></i></button>
+                </div>
+            </div>
+            
+            <button type="button" class="btn btn-outline-success" (click)="addNewExpense()">Add new expense</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 my-3">
+            <category-wrapper></category-wrapper>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 item-wrapper">
+            <expense-item *ngFor="let expense of expenses" [expense]="expense" />
+        </div>
+    </div>
+    <expense-form></expense-form>
+    <category-list></category-list>
+</div>

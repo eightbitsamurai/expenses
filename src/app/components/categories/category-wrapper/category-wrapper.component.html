@@ -1,0 +1,12 @@
+<div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Categories</h5>
+      <div class="card-contents">
+        <div class="categories" *ngFor="let category of categories">
+            <span class="badge badge-pill badge-primary">{{category.categoryName}}</span>
+        </div>
+        <span *ngIf="categories.length === 0">There are no categories to show.</span>
+        <button type="button" class="btn btn-primary" (click)="openModal();">Manage categories</button>
+      </div>
+    </div>
+</div>

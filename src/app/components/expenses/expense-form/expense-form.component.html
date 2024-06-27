@@ -1,0 +1,41 @@
+<div class="modal" tabindex="-1" style="background: rgba(0,0,0, .5);" [ngStyle]="{'display': isModalOpen ? 'block' : 'none'}">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{createMode ? "Add expense" : "Update expense"}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form [formGroup]="expenseForm" (ngSubmit)="$event.preventDefault(); saveExpense();">
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="expenseName">Expense name</label>
+              <input type="text" class="form-control" formControlName="expenseName" placeholder="Expense name">
+            </div>
+            <div class="form-group">
+              <label for="expenseValue">Expense value</label>
+              <input type="number" class="form-control" formControlName="expenseValue" placeholder="Expense value">
+            </div>
+            <div class="form-group">
+              <label for="categoryId">Expense category</label>
+              <select class="form-select custom-select" formControlName="categoryId" placeholder="Expense category">
+                <option *ngFor="let category of categories" value="{{category.categoryId}}">{{category.categoryName}}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="expenseDate">Expense date</label>
+              <input type="date" class="form-control" formControlName="expenseDate" placeholder="Expense date">
+            </div>
+            <div class="form-group">
+              <label for="expenseDescription">Expense description</label>
+              <textarea class="form-control" placeholder="Expense description" formControlName="expenseDescription" rows="3"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" type="submit">Save</button>
+          </div>
+      </form>
+      </div>
+    </div>
+</div>

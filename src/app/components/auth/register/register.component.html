@@ -1,0 +1,46 @@
+<form 
+    [formGroup]="reactiveForm"
+    (ngSubmit)="$event.preventDefault(); submitForm()"
+>
+    <h3 class="my-3">Register via Reactive form</h3>
+    <div class="mb-3">
+        <label class="form-label">First name</label>
+        <input type="text" class="form-control" formControlName="firstName">
+        <ng-container *ngIf="validated">
+            <small class="text-danger" *ngIf="reactiveForm.get('firstName')?.hasError('required')">First name is required.</small>
+        </ng-container>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Username</label>
+        <input type="text" class="form-control" formControlName="username">
+        <ng-container *ngIf="validated">
+            <small class="text-danger" *ngIf="reactiveForm.get('username')?.hasError('required')">Username is required.</small>
+        </ng-container>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control" formControlName="password">
+        <ng-container *ngIf="validated">
+            <small class="text-danger" *ngIf="reactiveForm.get('password')?.hasError('required')">Password is required.</small>
+            <small class="text-danger" *ngIf="reactiveForm.get('password')?.hasError('minlength')">Password has to be at least 8 characters long.</small>
+        </ng-container>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Repeat password</label>
+        <input type="password" class="form-control" formControlName="repeatPassword">
+        <ng-container *ngIf="validated" >
+            <div style="display: flex; flex-direction: column;">
+                <small class="text-danger" *ngIf="reactiveForm.get('repeatPassword')?.hasError('required')">Repeat password is required.</small>
+                <small class="text-danger" *ngIf="reactiveForm.get('repeatPassword')?.hasError('minlength')">Repeat password has to be at least 8 characters long.</small>
+                <small class="text-danger" *ngIf="reactiveForm.hasError('mismatch')">Repeat password does not match password.</small>
+            </div>
+        </ng-container>
+    </div>
+
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
